@@ -1,0 +1,96 @@
+#include "binaryFix.hpp"
+
+BinaryFix::BinaryFix(GameVersion gameVersion, GameConfig gameConfig) : gameConfig(gameConfig), gameVersion(gameVersion)
+{
+}
+
+void BinaryFix::set3DRatio()
+{
+    uint32_t address = 0;
+
+    // TODO remowrk to use getAPI and getRelease? But we do memory patching, so hash is the best option here for now
+    std::string hash = gameVersion.getGameHash();
+
+    //search for 1.332999945
+    if (hash == "E4BAF3E5CACD51AFCE61007F72781167") {
+        // International DirectX
+        address = 0x403327;
+    }
+    else if (hash == "C5801F89E46C53A67AC8D7C18A94ACD8") {
+        // International Glide
+        address = 0x403327;
+    }
+    else if (hash == "CE9A034310D45EED6D6E2C1B6014376E") {
+        // Polish DirectX
+        address = 0x440b37;
+    }
+    else if (hash == "7D7EB6DFB099CF06FEF28F436CAE6E52") {
+        // Polish Glide
+        address = 0x43ef07;
+    }
+
+    std::stringstream ss;
+    ss << "got hash: " << hash << " with res " << gameConfig.getWidth() << "x" << gameConfig.getHeight();
+    OutputDebugString(ss.str().c_str());
+
+    if (!address) {
+        throw std::runtime_error("set3DRatio: unknown game version");
+    }
+    float ratio = static_cast<float>(gameConfig.getWidth())/ static_cast<float>(gameConfig.getHeight());
+    replaceMemory(address, ratio);
+
+}
+
+void BinaryFix::setUIRatio()
+{
+    uint32_t addressX = 0;
+    uint32_t addressY = 0;
+
+    // TODO remowrk to use getAPI and getRelease? But we do memory patching, so hash is the best option here for now
+    std::string hash = gameVersion.getGameHash();
+    if (hash == "E4BAF3E5CACD51AFCE61007F72781167") {
+        // International DirectX
+        addressX = 0x46E69C;
+    }
+    else if (hash == "C5801F89E46C53A67AC8D7C18A94ACD8") {
+        // International Glide
+        addressX = 0x46D754;
+    }
+    else if (hash == "CE9A034310D45EED6D6E2C1B6014376E") {
+        // Polish DirectX
+        addressX = 0x46f634;
+    }
+    else if (hash == "7D7EB6DFB099CF06FEF28F436CAE6E52") {
+        // Polish Glide
+        addressX = 0x46D6EC;
+    }
+
+    if (!addressX) {
+        throw std::runtime_error("set3DRatio: unknown game version");
+    }
+
+    addressY = addressX - 4;
+    float ratio43 = 4.0f / 3.0f;
+    float ratioWanted = static_cast<float>(gameConfig.getWidth()) / static_cast<float>(gameConfig.getHeight());
+    // TODO rework if the screen is higher than wider
+    if (ratio43 < ratioWanted)
+    {
+        float ratio = ratio43 / ratioWanted * 0.0015625f; // 0.0015625 is magic
+        replaceMemory(addressX, ratio);
+    }
+    else
+    {
+        float ratio = ratioWanted /ratio43 * 0.0020833334f; // 0.0020833334 is magic
+        replaceMemory(addressY, ratio);
+    }
+}
+
+void BinaryFix::removeResolutionLimit()
+{
+
+}
+
+void BinaryFix::fixRadeon()
+{
+
+}
