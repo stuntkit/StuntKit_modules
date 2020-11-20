@@ -87,7 +87,38 @@ void BinaryFix::setUIRatio()
 
 void BinaryFix::removeResolutionLimit()
 {
+    uint32_t addressX = 0;
+    uint32_t addressY = 0;
 
+    // TODO remowrk to use getAPI and getRelease? But we do memory patching, so hash is the best option here for now
+    std::string hash = gameVersion.getGameHash();
+    if (hash == "E4BAF3E5CACD51AFCE61007F72781167") {
+        // International DirectX
+        addressX = 0x42D46E;
+    }
+    else if (hash == "C5801F89E46C53A67AC8D7C18A94ACD8") {
+        // International Glide
+        addressX = 0x42D4B2;
+    }
+    else if (hash == "CE9A034310D45EED6D6E2C1B6014376E") {
+        // Polish DirectX
+        addressX = 0x42a142;
+    }
+    else if (hash == "7D7EB6DFB099CF06FEF28F436CAE6E52") {
+        // Polish Glide
+        addressX = 0x42A11E;
+    }
+
+    if (!addressX) {
+        throw std::runtime_error("set3DRatio: unknown game version");
+    }
+
+    addressY = addressX+17;
+
+    //max resolution
+    uint32_t resolution = 15360; //16k is 15360x864 we should be good for a few years :P
+    replaceMemory(addressX, resolution);
+    replaceMemory(addressY, resolution);
 }
 
 void BinaryFix::fixRadeon()
