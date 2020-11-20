@@ -31,7 +31,7 @@ BOOL Initialize()
     binaryFix.set3DRatio();
     binaryFix.setUIRatio();
 
-    // binaryFix.removeResolutionLimit();
+    binaryFix.removeResolutionLimit();
 
     //only D3D version is affected
     /*if (gameVersion.getAPI() == API::DirectX)
