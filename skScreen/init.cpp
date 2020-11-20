@@ -34,10 +34,10 @@ BOOL Initialize()
     // binaryFix.removeResolutionLimit();
 
     //only D3D version is affected
-    /*if (gameVersion.getAPI() == API::DirectX)
+    if (gameVersion.getAPI() == API::DirectX)
     {
         binaryFix.fixRadeon();
-    }*/
+    }
 
     return TRUE;
 }

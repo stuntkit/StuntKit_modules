@@ -92,5 +92,24 @@ void BinaryFix::removeResolutionLimit()
 
 void BinaryFix::fixRadeon()
 {
+    uint32_t address = 0;
 
+    // only present in D3D versions
+    std::string hash = gameVersion.getGameHash();
+    if (hash == "E4BAF3E5CACD51AFCE61007F72781167") {
+        // International DirectX
+        address = 0x478110;
+    }
+    else if (hash == "CE9A034310D45EED6D6E2C1B6014376E") {
+        // Polish DirectX
+        address = 0x478868;
+    }
+
+    if (!address) {
+        throw std::runtime_error("set3DRatio: unknown game version");
+    }
+
+
+    char radeonFix[] = {'b', 'a', 'd', 'e', 'o', 'n', '\0'};
+    replaceMemory(address, radeonFix, sizeof(radeonFix));
 }
