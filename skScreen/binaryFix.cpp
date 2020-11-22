@@ -94,11 +94,11 @@ void BinaryFix::removeResolutionLimit()
     std::string hash = gameVersion.getGameHash();
     if (hash == "E4BAF3E5CACD51AFCE61007F72781167") {
         // International DirectX
-        addressX = 0x42D46E;
+        addressX = 0x42D4B2;
     }
     else if (hash == "C5801F89E46C53A67AC8D7C18A94ACD8") {
         // International Glide
-        addressX = 0x42D4B2;
+        addressX = 0x42D46E;
     }
     else if (hash == "CE9A034310D45EED6D6E2C1B6014376E") {
         // Polish DirectX
