@@ -7,3 +7,5 @@ project ("StuntKit_modules")
 
 # Include sub-projects.
 add_subdirectory ("skScreen")
+add_subdirectory ("skSpeedrun")
+add_subdirectory ("skDebug")
