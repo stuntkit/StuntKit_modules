@@ -15,4 +15,12 @@ Modules:
     * removes 2048px resolution limit ([modified d3dim.dll](https://github.com/UCyborg/LegacyD3DResolutionHack/releases/tag/v1.0.0) is still required)
     * Removes quality limitations in DirectX mode, when using Radeon graphics card
 
+# Installation and usage
+
+1. Download [`skScreen.dll`](https://github.com/Halamix2/StuntKit_modules/releases/tag/v0.0.2a) and put it in the same folder as `StuntGP.exe`
+2. Download [`StuntKit.zip`](https://github.com/Halamix2/StuntKit/releases/tag/0.0.1) and unpack files in the same folder as `StuntGP.exe`
+3. If you want to play the game in resolution greater than 2048px (e.g. 2560x1440), download [LegacyD3DResolutionHack](https://github.com/UCyborg/LegacyD3DResolutionHack/releases/tag/v1.0.0), and unpack it in the same folder as `StuntGP.exe`
+4. Edit `game.cfg` (if it doesn't exist, run `config.exe`) with a text editor, edit lines `DISPLAYRESWIDTH` and `DISPLAYRESHEIGHT` with requested resolution.
+5. Run `StuntKit_D3D.exe` or `StuntKit_Glide.exe`, depending on wanted graphics API. These programs will load all `sk*.dll` modules and start the game.
+
 ![skScreen screenshot](https://i.imgur.com/xLSMScZ.png)
