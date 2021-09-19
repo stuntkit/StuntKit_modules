@@ -40,10 +40,10 @@ void BinaryFix::fixTimer() {
     jumpAddress = baseAddress + 0x14;
 
     //replace blocks with NOPs, 0x90
-    char nopsThree[] = { 'Z', 'Z', 'Z' };
-    char nopsFive[] = { 'Z', 'Z', 'Z', 'Z', 'Z' };
+    char nopsThree[] = { 0x90, 0x90, 0x90 };
+    char nopsFive[] = { 0x90, 0x90, 0x90, 0x90, 0x90 };
     // JA jump, 0x77
-    char newJump[] = { 'M' };
+    char newJump[] = { 0x77 };
     replaceMemory(baseAddress, nopsFive, sizeof(nopsFive));
     replaceMemory(secondAddress, nopsThree, sizeof(nopsThree));
     replaceMemory(thirdAddress, nopsFive, sizeof(nopsFive));
