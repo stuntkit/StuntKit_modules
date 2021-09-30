@@ -34,11 +34,11 @@ void BinaryFix::set3DRatio()
     OutputDebugString(ss.str().c_str());
 
     if (!address) {
-        throw std::runtime_error("set3DRatio: unknown game version");
+        throw std::runtime_error("skScreen: unknown game version");
     }
     float ratio = static_cast<float>(gameConfig.getWidth())/ static_cast<float>(gameConfig.getHeight());
     replaceMemory(address, ratio);
-
+    OutputDebugString("skScreen: 3D screen ratio was set");
 }
 
 void BinaryFix::setUIRatio()
@@ -66,7 +66,7 @@ void BinaryFix::setUIRatio()
     }
 
     if (!addressX) {
-        throw std::runtime_error("set3DRatio: unknown game version");
+        throw std::runtime_error("skScreen: unknown game version");
     }
 
     addressY = addressX - 4;
@@ -83,6 +83,7 @@ void BinaryFix::setUIRatio()
         float ratio = ratioWanted /ratio43 * 0.0020833334f; // 0.0020833334 is magic
         replaceMemory(addressY, ratio);
     }
+    OutputDebugString("skScreen: UI screen ratio was set");
 }
 
 void BinaryFix::removeResolutionLimit()
@@ -110,7 +111,7 @@ void BinaryFix::removeResolutionLimit()
     }
 
     if (!addressX) {
-        throw std::runtime_error("set3DRatio: unknown game version");
+        throw std::runtime_error("skScreen: unknown game version");
     }
 
     addressY = addressX+17;
@@ -119,6 +120,7 @@ void BinaryFix::removeResolutionLimit()
     uint32_t resolution = 15360; //16k is 15360x864 we should be good for a few years :P
     replaceMemory(addressX, resolution);
     replaceMemory(addressY, resolution);
+    OutputDebugString("skScreen: removed resolution limit");
 }
 
 void BinaryFix::fixRadeon()
@@ -137,10 +139,12 @@ void BinaryFix::fixRadeon()
     }
 
     if (!address) {
-        throw std::runtime_error("set3DRatio: unknown game version");
+        throw std::runtime_error("skScreen: unknown game version");
     }
 
 
     char radeonFix[] = {'b', 'a', 'd', 'e', 'o', 'n', '\0'};
     replaceMemory(address, radeonFix, sizeof(radeonFix));
+
+    OutputDebugString("skScreen: Applied Radeon fix");
 }

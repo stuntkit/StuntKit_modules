@@ -16,13 +16,14 @@ BOOL Initialize()
         return FALSE;
     }
 
+    OutputDebugString("skDebug loaded");
     return TRUE;
 }
 
 BOOL Finalize() {
     // this module doesn't need any cleanup yet
     // it would if it wa hooking up to any API
-    OutputDebugString("skDebug:quitting");
+    OutputDebugString("skDebug: quitting");
     //char[256], so 255 chars plus \0
     char *errorAddress = 0x0;
     if (gameVersion.getRelease() == Release::International && gameVersion.getAPI() == API::DirectX) {
@@ -60,13 +61,13 @@ BOOL Finalize() {
                 logFile.close();
             }
             else {
-                OutputDebugString("skDebug:  can't write to log.txt!");
+                OutputDebugString("skDebug: can't write to log.txt!");
             }
             // MessageBox(NULL, "No DirectX error message found!", "skDebug seems clean", MB_OK | MB_ICONERROR);
         }
     }
     else {
-        OutputDebugString("skDebug: broken c++");
+        OutputDebugString("skDebug: broken code on my side, this shouldn't ever happen");
         // MessageBox(NULL, "Broken C++, you can't ship that! Address not set", "skDebug was written badly", MB_OK | MB_ICONERROR);
     }
     return TRUE;

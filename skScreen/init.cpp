@@ -3,17 +3,6 @@
 
 BOOL Initialize()
 {
-    // getGameVersion();
-    // readGameResolution();
-    // readModuleConfiguration();
-
-    // set3Dratio();
-    // setUIRatio();
-
-    // removeResolutionLimit();
-    // fixRadeon();
-
-    // runInWindow();
     GameVersion gameVersion;
     GameConfig gameConfig;
     BinaryFix binaryFix(gameVersion, gameConfig);
