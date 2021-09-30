@@ -7,6 +7,7 @@
 #include "common.hpp"
 #include "gameVersion.hpp"
 #include "gameConfig.hpp"
+#include "replacementFunction.hpp"
 
 class BinaryFix {
 public:
