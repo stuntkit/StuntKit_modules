@@ -16,6 +16,8 @@ GameConfig::GameConfig()
             std::string key;
             std::string equalSign;
             std::string value;
+
+            ss >> key >> equalSign >> value;
             
             configContainer.insert({ key, value });
         }

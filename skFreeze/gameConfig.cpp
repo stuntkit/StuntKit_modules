@@ -21,10 +21,6 @@ GameConfig::GameConfig()
             
             ss >> key >> equalSign >> value;
 
-            std::stringstream ss2;
-            ss2 << key << equalSign << value;
-            OutputDebugString(ss2.str().c_str());
-
             configContainer.insert({ key, value });
         }
         
