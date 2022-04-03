@@ -86,6 +86,45 @@ void BinaryFix::setUIRatio()
     OutputDebugString("skScreen: UI screen ratio was set");
 }
 
+
+void BinaryFix::setTextTiltRatio()
+{
+    uint32_t address = 0;
+
+    // TODO remowrk to use getAPI and getRelease? But we do memory patching, so hash is the best option here for now
+    std::string hash = gameVersion.getGameHash();
+
+    //search for 1.332999945
+    if (hash == "E4BAF3E5CACD51AFCE61007F72781167") {
+        // International DirectX
+        address = 0x46e6ec;
+    }
+    else if (hash == "C5801F89E46C53A67AC8D7C18A94ACD8") {
+        // International Glide
+        address = 0x46d7ac;
+    }
+    else if (hash == "CE9A034310D45EED6D6E2C1B6014376E") {
+        // Polish DirectX
+        address = 0x46f68c;
+    }
+    else if (hash == "7D7EB6DFB099CF06FEF28F436CAE6E52") {
+        // Polish Glide
+        address = 0x46d754;
+    }
+
+    std::stringstream ss;
+    ss << "got hash: " << hash << " with res " << gameConfig.getWidth() << "x" << gameConfig.getHeight();
+    OutputDebugString(ss.str().c_str());
+
+    if (!address) {
+        throw std::runtime_error("skScreen: unknown game version");
+    }
+    // 0.0000520833345945 is a magic value, the game by default sets 640x480 resolution
+    float ratio = 0.0000520833345945f * (480.0f / static_cast<float>(gameConfig.getHeight()));
+    replaceMemory(address, ratio);
+    OutputDebugString("skScreen: 3D screen ratio was set");
+}
+
 void BinaryFix::removeResolutionLimit()
 {
     uint32_t addressX = 0;

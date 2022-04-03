@@ -19,6 +19,7 @@ BOOL Initialize()
 
     binaryFix.set3DRatio();
     binaryFix.setUIRatio();
+    binaryFix.setTextTiltRatio();
 
     binaryFix.removeResolutionLimit();
 

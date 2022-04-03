@@ -14,6 +14,7 @@ public:
 
     void set3DRatio();
     void setUIRatio();
+    void setTextTiltRatio();
 
     void removeResolutionLimit();
     void fixRadeon();
