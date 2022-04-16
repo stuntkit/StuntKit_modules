@@ -15,14 +15,13 @@ public:
     /**
     * Reads config from game.cfg
     */
-    GameConfig();
-    uint_least32_t getWidth();
-    uint_least32_t getHeight();
+    GameConfig(std::string filename);
+
+    bool keyExists(std::string key);
+    std::string getString(std::string key);
 
 private:
     std::map<std::string, std::string> configContainer;
-    //uint_least32_t width = 640;
-    //uint_least32_t height = 480;
 };
 
 #endif /* GAME_CONFIG_HPP*/

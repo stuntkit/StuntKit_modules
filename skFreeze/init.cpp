@@ -3,19 +3,8 @@
 
 BOOL Initialize()
 {
-    // getGameVersion();
-    // readGameResolution();
-    // readModuleConfiguration();
-
-    // set3Dratio();
-    // setUIRatio();
-
-    // removeResolutionLimit();
-    // fixRadeon();
-
-    // runInWindow();
     GameVersion gameVersion;
-    GameConfig gameConfig;
+    GameConfig gameConfig("game.cfg");
     BinaryFix binaryFix(gameVersion);
 
     // TODO refactor with exceptions?
@@ -27,9 +16,14 @@ BOOL Initialize()
         MessageBox(NULL, "Unknown version of the game exe. This module is incompatible with widescreen fix.", "skScreen failed to load", MB_OK | MB_ICONERROR);
         return FALSE;
     }
+    
+    if (!gameConfig.keyExists("DISABLE_FRAMERATE_CORRECTION")) {
+        OutputDebugString("skFreeze: could not find config key DISABLE_FRAMERATE_CORRECTION");
+        return FALSE;
+    }
+    bool disableFramerateCorrection = static_cast<bool>(std::stoi(gameConfig.getString("DISABLE_FRAMERATE_CORRECTION")));
 
-    if (gameConfig.getDisableFramerateCorrection() == false) {
-
+    if (disableFramerateCorrection == false) {
         binaryFix.fixTimer();
     }
 

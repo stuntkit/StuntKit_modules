@@ -49,7 +49,7 @@ BOOL Finalize() {
                 logFile.close();
             }
             else {
-                OutputDebugString("skDebug:  can't write to log.txt!");
+                OutputDebugString("skDebug: can't write to log.txt!");
             }
             // MessageBox(NULL, err.str().c_str(), "skDebug found something!", MB_OK | MB_ICONERROR);
         }

@@ -1,4 +1,4 @@
-#include "gameVersion.hpp"
+#include "../common/gameVersion.hpp"
 
 GameVersion::GameVersion() {
     this->hash = calculateGameHash();

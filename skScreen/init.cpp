@@ -4,7 +4,7 @@
 BOOL Initialize()
 {
     GameVersion gameVersion;
-    GameConfig gameConfig;
+    GameConfig gameConfig("game.cfg");
     BinaryFix binaryFix(gameVersion, gameConfig);
 
     // TODO refactor with exceptions?

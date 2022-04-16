@@ -9,3 +9,10 @@ project ("StuntKit_modules")
 add_subdirectory ("skScreen")
 add_subdirectory ("skDebug")
 add_subdirectory ("skFreeze")
+
+GET_FILENAME_COMPONENT(SGPPATH "[HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Team17SoftwareLTD\\StuntGP;Path]" ABSOLUTE CACHE)
+MESSAGE("SGPPATH = ${SGPPATH}")
+
+if(DEFINED SGPPATH)
+	install(TARGETS skScreen skDebug skFreeze DESTINATION ${SGPPATH})
+endif()

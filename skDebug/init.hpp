@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <fstream>
 
-#include "gameVersion.hpp"
+#include "../common/gameVersion.hpp"
 
 BOOL Initialize();
 BOOL Finalize();

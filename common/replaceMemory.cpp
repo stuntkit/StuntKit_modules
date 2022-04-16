@@ -1,4 +1,4 @@
-#include "common.hpp"
+#include "../common/ReplaceMemory.hpp"
 
 void replaceMemory(DWORD address, const char data[], uint32_t length)
 {

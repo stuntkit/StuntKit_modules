@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add source to this project's executable.
 add_library (skDebug SHARED "skDebug.cpp" 
 "init.cpp" "init.hpp"
-"gameVersion.hpp" "gameVersion.cpp"
+"../common/gameVersion.hpp" "../common/GameVersion.cpp"
 )
 
 # TODO: Add tests and install targets if needed.

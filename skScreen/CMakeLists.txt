@@ -8,9 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library (skScreen SHARED "skScreen.cpp" 
 "init.cpp" "init.hpp"
 "binaryFix.cpp" "binaryFix.hpp"
-"common.cpp" "common.hpp"
-"gameConfig.cpp" "GameConfig.hpp"
-"gameVersion.hpp" "gameVersion.cpp"
+"../common/replaceMemory.cpp" "../common/replaceMemory.hpp"
+"../common/GameConfig.cpp" "../common/GameConfig.hpp"
+"../common/gameVersion.hpp" "../common/GameVersion.cpp"
 )
 
 # TODO: Add tests and install targets if needed.

@@ -4,9 +4,9 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "common.hpp"
-#include "gameVersion.hpp"
-#include "gameConfig.hpp"
+#include "../common/replaceMemory.hpp"
+#include "../common/gameVersion.hpp"
+#include "../common/gameConfig.hpp"
 #include "replacementFunction.hpp"
 
 class BinaryFix {

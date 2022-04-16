@@ -3,8 +3,8 @@
 #include <windows.h>
 #include <cstdint>
 
-#include "gameVersion.hpp"
-#include "gameConfig.hpp"
+#include "../common/gameVersion.hpp"
+#include "../common/gameConfig.hpp"
 #include "binaryFix.hpp"
 
 BOOL Initialize();

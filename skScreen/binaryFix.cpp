@@ -2,6 +2,19 @@
 
 BinaryFix::BinaryFix(GameVersion gameVersion, GameConfig gameConfig) : gameConfig(gameConfig), gameVersion(gameVersion)
 {
+    if (!gameConfig.keyExists("DISPLAYRESWIDTH")) {
+        std::string errorMessage = "skScreen: could not find config key DISPLAYRESWIDTH";
+        OutputDebugString(errorMessage.c_str());
+        throw std::runtime_error(errorMessage);
+    }
+    this->configWidth = std::stoi(gameConfig.getString("DISPLAYRESWIDTH"));
+
+    if (!gameConfig.keyExists("DISPLAYRESHEIGHT")) {
+        std::string errorMessage = "skScreen: could not find config key DISPLAYRESHEIGHT";
+        OutputDebugString(errorMessage.c_str());
+        throw std::runtime_error(errorMessage);
+    }
+    this->configHeight = std::stoi(gameConfig.getString("DISPLAYRESHEIGHT"));
 }
 
 void BinaryFix::set3DRatio()
@@ -30,13 +43,13 @@ void BinaryFix::set3DRatio()
     }
 
     std::stringstream ss;
-    ss << "got hash: " << hash << " with res " << gameConfig.getWidth() << "x" << gameConfig.getHeight();
+    ss << "got hash: " << hash << " with res " << configWidth << "x" << configHeight;
     OutputDebugString(ss.str().c_str());
 
     if (!address) {
         throw std::runtime_error("skScreen: unknown game version");
     }
-    float ratio = static_cast<float>(gameConfig.getWidth())/ static_cast<float>(gameConfig.getHeight());
+    float ratio = static_cast<float>(configWidth)/ static_cast<float>(configHeight);
     replaceMemory(address, ratio);
     OutputDebugString("skScreen: 3D screen ratio was set");
 }
@@ -71,7 +84,7 @@ void BinaryFix::setUIRatio()
 
     addressY = addressX - 4;
     float ratio43 = 4.0f / 3.0f;
-    float ratioWanted = static_cast<float>(gameConfig.getWidth()) / static_cast<float>(gameConfig.getHeight());
+    float ratioWanted = static_cast<float>(configWidth) / static_cast<float>(configHeight);
     // TODO rework if the screen is higher than wider
     if (ratio43 < ratioWanted)
     {
@@ -113,14 +126,14 @@ void BinaryFix::setTextTiltRatio()
     }
 
     std::stringstream ss;
-    ss << "got hash: " << hash << " with res " << gameConfig.getWidth() << "x" << gameConfig.getHeight();
+    ss << "got hash: " << hash << " with res " << configWidth << "x" << configHeight;
     OutputDebugString(ss.str().c_str());
 
     if (!address) {
         throw std::runtime_error("skScreen: unknown game version");
     }
     // 0.0000520833345945 is a magic value, the game by default sets 640x480 resolution
-    float ratio = 0.0000520833345945f * (480.0f / static_cast<float>(gameConfig.getHeight()));
+    float ratio = 0.0000520833345945f * (480.0f / static_cast<float>(configHeight));
     replaceMemory(address, ratio);
     OutputDebugString("skScreen: 3D screen ratio was set");
 }

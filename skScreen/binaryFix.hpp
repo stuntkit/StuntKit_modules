@@ -4,9 +4,9 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "common.hpp"
-#include "gameVersion.hpp"
-#include "gameConfig.hpp"
+#include "../common/replaceMemory.hpp"
+#include "../common/gameVersion.hpp"
+#include "../common/gameConfig.hpp"
 
 class BinaryFix {
 public:
@@ -22,6 +22,8 @@ public:
 private:
     GameVersion gameVersion;
     GameConfig gameConfig;
+    uint32_t configWidth;
+    uint32_t configHeight;
 };
 
 

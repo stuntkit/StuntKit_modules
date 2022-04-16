@@ -9,10 +9,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library (skFreeze SHARED "skFreeze.cpp" 
 "init.cpp" "init.hpp"
 "binaryFix.cpp" "binaryFix.hpp"
-"common.cpp" "common.hpp"
-"gameConfig.cpp" "GameConfig.hpp"
 "replacementFunction.hpp" "replacementFunction.cpp"
-"gameVersion.hpp" "gameVersion.cpp"
+"../common/GameConfig.cpp" "../common/GameConfig.hpp"
+"../common/gameVersion.hpp" "../common/GameVersion.cpp"
+"../common/replaceMemory.cpp" "../common/replaceMemory.hpp"
 )
 
 # target_link_libraries(skWin10 PRIVATE profileapi.lib)

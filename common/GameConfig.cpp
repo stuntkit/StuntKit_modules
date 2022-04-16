@@ -1,8 +1,8 @@
-#include "GameConfig.hpp"
+#include "../common/gameConfig.hpp"
 
-GameConfig::GameConfig()
+GameConfig::GameConfig(std::string filename)
 {
-    std::ifstream gameCfg("game.cfg", std::fstream::in);
+    std::ifstream gameCfg(filename, std::fstream::in);
     std::string line;
     while (std::getline(gameCfg, line))
     {
@@ -16,25 +16,28 @@ GameConfig::GameConfig()
             std::string key;
             std::string equalSign;
             std::string value;
-            
-            
-            
-            ss >> key >> equalSign >> value;
 
+            ss >> key >> equalSign >> value;
+            
             configContainer.insert({ key, value });
         }
         
     }
 }
 
-bool GameConfig::getDisableFramerateCorrection()
-{
-
-    auto it = configContainer.find("DISABLE_FRAMERATE_CORRECTION");
+bool GameConfig::keyExists(std::string key) {
+    auto it = configContainer.find(key);
     if (it != configContainer.end()) {
-        // TODO handle malformed config files
-        return  static_cast<bool>(std::stoi(it->second));
+        return true;
     }
-    OutputDebugString("DISABLE_FRAMERATE_CORRECTION not found! Using false instead");
     return false;
+}
+
+std::string GameConfig::getString(std::string key) {
+    auto it = configContainer.find(key);
+    if (it != configContainer.end()) {
+        return  it->second;
+    }
+    std::string errorString = "GameConfig: Couldn't find key " + key;
+    throw std::runtime_error(errorString);
 }
