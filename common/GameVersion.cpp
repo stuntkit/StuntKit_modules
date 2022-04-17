@@ -20,7 +20,6 @@ GameVersion::GameVersion() {
         release = Release::Polish;
         api = API::Glide;
     }
-
 }
 
 const bool GameVersion::isKnownGameVersion()

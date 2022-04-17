@@ -24,3 +24,10 @@ void replaceMemory(DWORD address, uint32_t number)
     memcpy(data, &number, 4);
     replaceMemory(address, data, 4);
 }
+
+void replaceMemory(DWORD address, uint8_t number)
+{
+    char data[1];
+    memcpy(data, &number, 1);
+    replaceMemory(address, data, 1);
+}
