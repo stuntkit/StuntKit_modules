@@ -6,7 +6,7 @@ StuntKit modules
 
 StuntKit is a project aimed at developing an unified interface that enables writing arbitrary extensions for Stunt GP and loading them by hooking into the game's process. It was inspired by similar idea centered around another Team17's game, WormKit for Worms Armageddon.
 
-[StuntKit loader](https://github.com/halamix2/StuntKit) is necessary to use these modules
+[StuntKit loader](https://github.com/StuntKit/StuntKit) is necessary to use these modules
 
 Modules:
 
@@ -26,9 +26,9 @@ Modules:
 
 # Installation and usage
 
-1. Download [StuntKit loader](https://github.com/Halamix2/StuntKit/releases/latest)) and put files in the same folder as `StuntGP.exe`
-2. Download modules you want (https://github.com/Halamix2/StuntKit_modules/releases/latest) and put it in the same folder as `StuntGP.exe`
-3. If you want to play the game in resolution greater than 2048px (e.g. 2560x1440), download  [`StuntKit.dll`](https://github.com/Halamix2/StuntKit/releases/) and [LegacyD3DResolutionHack](https://github.com/UCyborg/LegacyD3DResolutionHack/releases/tag/v1.0.0), unpack it and put the files in the same folder as `StuntGP.exe`
+1. Download [StuntKit loader](https://github.com/StuntKit/StuntKit/releases/latest)) and put files in the same folder as `StuntGP.exe`
+2. Download modules you want (https://github.com/StuntKit/StuntKit_modules/releases/latest) and put it in the same folder as `StuntGP.exe`
+3. If you want to play the game in resolution greater than 2048px (e.g. 2560x1440), download  [`StuntKit.dll`](https://github.com/StuntKit/StuntKit/releases/) and [LegacyD3DResolutionHack](https://github.com/UCyborg/LegacyD3DResolutionHack/releases/tag/v1.0.0), unpack it and put the files in the same folder as `StuntGP.exe`
 4. Edit `game.cfg` (if it doesn't exist, run `config.exe`) with a text editor, update lines `DISPLAYRESWIDTH` and `DISPLAYRESHEIGHT` with desired resolution.
 5. Run `StuntKit_D3D.exe` or `StuntKit_Glide.exe`, depending on used graphics API. If you don't know which one you should use, I suggest `stuntKit_D3D.exe`. These programs will load all `sk*.dll` modules and start the game.
 
